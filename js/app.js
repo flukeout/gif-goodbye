@@ -29,7 +29,7 @@ var maxPeople = 9;
 
 var maxDegrees = 40; // For tilting the screen
 var actionTicks = 0;
-var numberGifs = 24;
+var numberGifs = 25;
 var ticks = 0;
 var minDelay = 10;
 var maxDelay = 150;
@@ -102,7 +102,7 @@ function joinPerson(){
 
   while (true) {
     randomGif = Math.floor(getRandom(1, numberGifs + 1));
-    if (usedGifs.indexOf(randomGif) === -1) break; 
+    if (usedGifs.indexOf(randomGif) === -1) break;
   }
 
   usedGifs.push(randomGif);
