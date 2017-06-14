@@ -177,7 +177,7 @@ function getRandomPhrase () {
 
 var growlFunctions = {
   chat: function (notification, topic, message) {
-    topic.innerHTML = 'New message from ' + getRandomWord('handle');
+    topic.innerHTML = 'Message from ' + getRandomWord('handle');
     notification.classList.add('chat');
     message.innerHTML = getRandomPhrase();
   },
@@ -190,7 +190,7 @@ var growlFunctions = {
   newFlamingEmail: function (notification, topic, message) {
     inboxCount++;
     notification.classList.add('mail');
-    topic.innerHTML = 'New mail from ' + getRandomWord('boss');
+    topic.innerHTML = getRandomWord('boss');
     message.innerHTML = 'URGENT ' + (getRandomWord('noun') + "S") .toUpperCase() + ' NEEDED';
   }
 };
