@@ -138,16 +138,44 @@ function moveBar(){
 
 }
 
+var growlSentences = [
+  'the {{noun}} needs to be {{past_verb}}',
+  '{{singular_pronoun}} says {{simple_response}}',
+  '{{plural_pronoun}} say {{simple_response}}',
+  '{{singular_pronoun}} needs a {{noun}}',
+  '{{handle}} needs you to {{present_direct_verb}} the {{noun}}',
+  'their {{noun}} needs a {{noun}}',
+  '{{handle}} needs a {{noun}}',
+  '{{noun}} {{event}}'
+];
+
 var growlWords = {
   boss: [
     'mark@mozillafoundation.org', 'chris@mozillafoundation.org', 'angela@mozillafoundation.org'
+  ],
+  present_direct_verb: [
+    'fix', 'eat', 'make',
+    'write', 'enjoy', 'destroy'
+  ],
+  past_verb: [
+    'fixed', 'warmed up', 'nailed',
+    'snapped', 'beefed up', 'multiplied',
+    'amplified', 'reduced', 'mongrified',
+    'SQL\'d', 'turned off', 'named differently',
+    'designed', 'torn down'
   ],
   salutation: [
     'dude', 'hey', 'uhoh',
     'omg', 'yo', 'SIMON'
   ],
-  pronoun: [
-    'theirs', 'she', 'he', 'it'
+  singular_pronoun: [
+    'she', 'he', 'it'
+  ],
+  plural_pronoun: [
+    'they', 'I', 'we'
+  ],
+  simple_response: [
+    'ok', 'nah', 'yep', 'nope', 'maybe'
   ],
   noun: [
     'server', 'comment', 'hire',
@@ -160,7 +188,7 @@ var growlWords = {
     'flukeout', 'cade', 'hannah',
     'mw', 'secretrobotroll'
   ],
-  happening: [
+  event: [
     'burned down', 'isn\'t responding', 'likes cake',
     'wants a raise', 'needs help', 'has too many'
   ]
@@ -172,20 +200,27 @@ function getRandomWord (type) {
   return growlWords[type][Math.floor(growlWords[type].length * Math.random())];
 }
 
-function getRandomSubject () {
-  var words = growlWords.noun.concat(growlWords.pronoun);
-  return words[Math.floor(words.length * Math.random())];
-}
+function generateSentence() {
+  var sentenceTemplateCopy = growlSentences[Math.floor(Math.random() * growlSentences.length)] + '';
 
-function getRandomPhrase () {
-  return getRandomWord('salutation') + ', ' + getRandomSubject() + ' ' + getRandomWord('happening');
+  while (true) {
+    var regexSearch = sentenceTemplateCopy.match(/\{\{([^\}]+)\}\}/);
+    if (!regexSearch) break;
+
+    var type = regexSearch[1];
+    var randomWord = getRandomWord(type);
+
+    sentenceTemplateCopy = sentenceTemplateCopy.substr(0, regexSearch.index) + randomWord + sentenceTemplateCopy.substr(regexSearch.index + regexSearch[0].length)
+  }
+
+  return sentenceTemplateCopy;  
 }
 
 var growlFunctions = {
   chat: function (notification, topic, message) {
     topic.innerHTML = 'Message from ' + getRandomWord('handle');
     notification.classList.add('chat');
-    message.innerHTML = getRandomPhrase();
+    message.innerHTML = generateSentence();
   },
   emailCount: function (notification, topic, message) {
     inboxCount++;
