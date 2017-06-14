@@ -4,7 +4,7 @@ $(document).ready(function(){
     mouseMove(e.pageX, e.pageY);
   });
 
-  $(".ui-bar .close").on("click",function(){
+  $(".ui-bar .close").on("mouseover",function(){
 
     moveBar();
 
