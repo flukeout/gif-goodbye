@@ -138,31 +138,115 @@ function moveBar(){
 
 }
 
+var growlChatSentences = [
+  'the {{noun}} {{command_verb}} to be {{past_verb}}',
+  'the {{adjective}} {{noun}} {{command_verb}} to be {{past_verb}}',
+  '{{singular_pronoun}} says {{simple_response}}',
+  '{{singular_pronoun}} says {{adjective}} {{simple_response}}',
+  '{{plural_pronoun}} say {{simple_response}}',
+  '{{plural_pronoun}} say {{adjective}} {{simple_response}}',
+  '{{singular_pronoun}} {{third_person_verb}} a {{noun}}',
+  '{{singular_pronoun}} {{third_person_verb}} a {{adjective}} {{noun}}',
+  '{{handle}} needs you to {{present_direct_verb}} the {{noun}}',
+  '{{handle}} needs you to {{present_direct_verb}} the {{adjective}} {{noun}}',
+  'their {{noun}} {{third_person_verb}} a {{noun}}',
+  'their {{noun}} {{third_person_verb}} a {{adjective}} {{noun}}',
+  '{{handle}} {{third_person_verb}} a {{noun}}',
+  '{{handle}} {{third_person_verb}} a {{adjective}} {{noun}}',
+  '{{noun}} {{event}}',
+  '{{question}} does {{singular_pronoun}} {{present_direct_verb}} {{noun}}s?',
+  'what is {{singular_pronoun}} {{ing_verb}} with {{noun}}s?'
+];
+
+var growlCalendarPhrases = [
+  '{{imperative_verb}} {{personal_noun}}',
+  'take {{personal_noun}} to {{personal_place}}',
+  'go to {{personal_place}}',
+  'meet with {{handle}}'
+];
+
 var growlWords = {
   boss: [
     'mark@mozillafoundation.org', 'chris@mozillafoundation.org', 'angela@mozillafoundation.org'
+  ],
+  infinitive_verb: [
+    'to run', 'to make', 'to eat'
+  ],
+  ing_verb: [
+    'exploding', 'running', 'eating',
+    'leaving', 'buying', 'explaining',
+    'questioning',
+  ],
+  first_person_verb: [
+    'need', 'love', 'hate', 'make', 'enjoy', 'feel like', 'want', 'have'
+  ],
+  third_person_verb: [
+    'needs', 'loves', 'hates', 'makes', 'enjoys', 'feels like', 'wants', 'has'
+  ],
+  present_direct_verb: [
+    'fix', 'eat', 'make',
+    'write', 'enjoy', 'destroy'
+  ],
+  past_verb: [
+    'fixed', 'warmed up', 'nailed',
+    'snapped', 'beefed up', 'multiplied',
+    'amplified', 'reduced', 'mongrified',
+    'SQL\'d', 'turned off', 'named differently',
+    'designed', 'torn down'
+  ],
+  adjective: [
+    'red', 'yellow', 'blue', 'dark', 'light', 'green', 'orange', 'purple', 'black', 'maroon',
+    'delicious', 'heavy', 'cascading', 'wide', 'timely', 'awesome', 'wired-up', 'fancy', 'simple',
+    'obvious', 'codified', 'performative', 'efficient'
   ],
   salutation: [
     'dude', 'hey', 'uhoh',
     'omg', 'yo', 'SIMON'
   ],
-  pronoun: [
-    'theirs', 'she', 'he', 'it'
+  singular_pronoun: [
+    'she', 'he', 'it'
+  ],
+  plural_pronoun: [
+    'they', 'I', 'we'
+  ],
+  simple_response: [
+    'ok', 'nah', 'yep', 'nope', 'maybe'
+  ],
+  question: [
+    'how', 'why', 'where', 'when'
   ],
   noun: [
     'server', 'comment', 'hire',
     'manager', 'model', 'quote',
     'doc', 'presentation', 'deck',
     'signin', 'SSO', 'Thimble',
-    'Mozfest', 'maker'
+    'Mozfest', 'maker', 'FTU'
   ],
   handle: [
     'flukeout', 'cade', 'hannah',
-    'mw', 'secretrobotroll'
+    'mw', 'secretrobotroll', 'pomax',
+    'gvn', 'brett', 'kristina', 'amira', 'julia'
   ],
-  happening: [
+  event: [
     'burned down', 'isn\'t responding', 'likes cake',
     'wants a raise', 'needs help', 'has too many'
+  ],
+  urgent_verb: [
+    'NEEDED', 'BROKEN', 'FAILING',
+    'MISSING', 'LEAVING', 'EXPECTED',
+    'DUE', 'INCOMING', 'IMPLODING'
+  ],
+  command_verb: [
+    'need', 'has'
+  ],
+  imperative_verb: [
+    'get', 'eat', 'make', 'pick up', 'buy'
+  ],
+  personal_place: [
+    'store', 'joe\'s', 'mountain', 'vancouver'
+  ],
+  personal_noun: [
+    'skis', 'kk', 'tires', 'tools', 'coffee', 'joe', 'ice cream'
   ]
 }
 
@@ -172,20 +256,32 @@ function getRandomWord (type) {
   return growlWords[type][Math.floor(growlWords[type].length * Math.random())];
 }
 
-function getRandomSubject () {
-  var words = growlWords.noun.concat(growlWords.pronoun);
-  return words[Math.floor(words.length * Math.random())];
+function generateSentence(templates) {
+  var sentenceTemplateCopy = templates[Math.floor(Math.random() * templates.length)] + '';
+
+  while (true) {
+    var regexSearch = sentenceTemplateCopy.match(/\{\{([^\}]+)\}\}/);
+    if (!regexSearch) break;
+
+    var type = regexSearch[1];
+    var randomWord = getRandomWord(type);
+
+    sentenceTemplateCopy = sentenceTemplateCopy.substr(0, regexSearch.index) + randomWord + sentenceTemplateCopy.substr(regexSearch.index + regexSearch[0].length)
+  }
+
+  return sentenceTemplateCopy;  
 }
 
-function getRandomPhrase () {
-  return getRandomWord('salutation') + ', ' + getRandomSubject() + ' ' + getRandomWord('happening');
+function getRandomEmailSubjectPrefix () {
+  var prefixes = ['RE: ', 'FWD: ', 'FWD: FWD: ', 'FWD: FWD: FWD: ', '', ''];
+  return prefixes[Math.floor(Math.random() * prefixes.length)];
 }
 
 var growlFunctions = {
   chat: function (notification, topic, message) {
     topic.innerHTML = 'Message from ' + getRandomWord('handle');
     notification.classList.add('chat');
-    message.innerHTML = getRandomPhrase();
+    message.innerHTML = generateSentence(growlChatSentences);
   },
   emailCount: function (notification, topic, message) {
     inboxCount++;
@@ -197,7 +293,13 @@ var growlFunctions = {
     inboxCount++;
     notification.classList.add('mail');
     topic.innerHTML = getRandomWord('boss');
-    message.innerHTML = 'URGENT ' + (getRandomWord('noun') + "S") .toUpperCase() + ' NEEDED';
+    message.innerHTML = getRandomEmailSubjectPrefix() + 'URGENT ' + (getRandomWord('noun') + "S") .toUpperCase() + ' ' + getRandomWord('urgent_verb');
+  },
+  calendar: function (notification, topic, message) {
+    var date = new Date(Date.now() + 600000);
+    notification.classList.add('calendar');
+    topic.innerHTML = generateSentence(growlCalendarPhrases);
+    message.innerHTML = date.getHours() + ':' + date.getMinutes();
   }
 };
 
