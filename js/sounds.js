@@ -4,6 +4,10 @@ var path = "./";
 
 
 var sounds = {
+  "knock" : {
+    url : path + "sounds/knock.mp3",
+    volume: .5
+  },
   "join" : {
     url : path + "sounds/join.wav",
     volume: .4
