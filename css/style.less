@@ -8,9 +8,6 @@ body {
   margin: 0;
   padding: 0;
   background: linear-gradient(-24deg, rgb(248, 14, 255), rgb(35, 207, 171));
-
-
-
 }
 
 .page-wrapper {
@@ -185,32 +182,49 @@ h2 {
 
 .growl-container {
   position: absolute;
-  right: 10px;
+  right: 0;
+  bottom: 0;
   width: @growlWidth;
-  height: 100%;
+  top: 0;
+  padding: 5px;
+
+  box-sizing: border-box;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
 
   .notification {
+
     position: relative;
-    height: 50px;
-    background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
-    width: @growlWidth;
-    border: 2px solid darkblue;
-    border-radius: 10px;
-    box-shadow: 1px 1px 5px #000;
+    min-height: 50px;
+    color: rgba(255,255,255,.8);
+
+    background: rgba(0,0,0,.8);
+    border-radius: 4px;
+    width: 290px;
+
     right: -@growlWidth;
     transition: right .25s;
     font-size: .8em;
-    padding: 5px;
+    padding: 9px 10px 10px 10px;
+    margin-bottom: 5px;
     padding-left: 50px;
     box-sizing: border-box;
+
+    div {
+      padding-bottom: 5px;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+
 
     &:before {
       content: ' ';
       position: absolute;
       left: 0;
       top: 0;
-      background-size: 40px auto;
-      background-position: 5px 50%;
+      background-size: 30px;
+      background-position: center 10px;
       width: 50px;
       height: 100%;
       background-repeat: no-repeat;
@@ -227,6 +241,6 @@ h2 {
     .topic {
       font-weight: bold;
     }
-  }  
+  }
 }
 
