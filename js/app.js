@@ -178,10 +178,10 @@ var growlWords = {
     'questioning',
   ],
   first_person_verb: [
-    'need', 'love', 'hate', 'make', 'enjoy', 'feel', 'want', 'understand'
+    'need', 'love', 'hate', 'make', 'enjoy', 'feel like', 'want', 'have'
   ],
   third_person_verb: [
-    'needs', 'loves', 'hates', 'makes', 'enjoys', 'feels', 'wants', 'understands'
+    'needs', 'loves', 'hates', 'makes', 'enjoys', 'feels like', 'wants', 'has'
   ],
   present_direct_verb: [
     'fix', 'eat', 'make',
