@@ -1,10 +1,15 @@
+var url = window.location;
+var path = url.pathname;
+var path = "./";
+
+
 var sounds = {
   "join" : {
-    url : "./sounds/join.wav",
+    url : path + "sounds/join.wav",
     volume: .4
   },
   "leave" : {
-    url : "./sounds/leave.wav",
+    url : path + "sounds/leave.wav",
   }
 };
 
