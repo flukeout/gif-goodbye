@@ -142,6 +142,7 @@ var growlWords = {
     'omg', 'yo', 'SIMON'
   ],
   pronoun: [
+    'theirs', 'she', 'he', 'it'
   ],
   noun: [
     'server', 'comment', 'hire',
