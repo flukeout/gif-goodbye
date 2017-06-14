@@ -204,6 +204,11 @@ var growlWords = {
   event: [
     'burned down', 'isn\'t responding', 'likes cake',
     'wants a raise', 'needs help', 'has too many'
+  ],
+  urgent_verb: [
+    'NEEDED', 'BROKEN', 'FAILING',
+    'MISSING', 'LEAVING', 'EXPECTED',
+    'DUE', 'INCOMING', 'IMPLODING'
   ]
 }
 
@@ -229,6 +234,11 @@ function generateSentence() {
   return sentenceTemplateCopy;  
 }
 
+function getRandomEmailSubjectPrefix () {
+  var prefixes = ['RE: ', 'FWD: ', 'FWD: FWD: ', 'FWD: FWD: FWD: ', '', ''];
+  return prefixes[Math.floor(Math.random() * prefixes.length)];
+}
+
 var growlFunctions = {
   chat: function (notification, topic, message) {
     topic.innerHTML = 'Message from ' + getRandomWord('handle');
@@ -245,7 +255,7 @@ var growlFunctions = {
     inboxCount++;
     notification.classList.add('mail');
     topic.innerHTML = getRandomWord('boss');
-    message.innerHTML = 'URGENT ' + (getRandomWord('noun') + "S") .toUpperCase() + ' NEEDED';
+    message.innerHTML = getRandomEmailSubjectPrefix() + 'URGENT ' + (getRandomWord('noun') + "S") .toUpperCase() + ' ' + getRandomWord('urgent_verb');
   }
 };
 
