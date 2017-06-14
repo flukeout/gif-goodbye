@@ -134,28 +134,53 @@ function moveBar(){
 }
 
 var growlWords = {
-  bosses: [
+  boss: [
     'mark@mozillafoundation.org', 'chris@mozillafoundation.org', 'angela@mozillafoundation.org'
   ],
-  nouns: [
-    'server', 'comment', 'hire'
+  salutation: [
+    'dude', 'hey', 'uhoh',
+    'omg', 'yo', 'SIMON'
   ],
-  verbs: [
-    'burned down'
+  pronoun: [
+  ],
+  noun: [
+    'server', 'comment', 'hire',
+    'manager', 'model', 'quote',
+    'doc', 'presentation', 'deck',
+    'signin', 'SSO', 'Thimble',
+    'Mozfest', 'maker'
+  ],
+  handle: [
+    'flukeout', 'cade', 'hannah',
+    'mw', 'secretrobotroll'
+  ],
+  happening: [
+    'burned down', 'isn\'t responding', 'likes cake',
+    'wants a raise', 'needs help', 'has too many'
   ]
 }
 
 var inboxCount = 2000 + Math.floor(Math.random() * 10000)
 
-function getRandomBoss () {
-  return growlWords.bosses[Math.floor(growlWords.bosses.length * Math.random())];
+function getRandomWord (type) {
+  return growlWords[type][Math.floor(growlWords[type].length * Math.random())];
 }
 
-function getRandomNoun () {
-  return growlWords.nouns[Math.floor(growlWords.nouns.length * Math.random())];
+function getRandomSubject () {
+  var words = growlWords.noun.concat(growlWords.pronoun);
+  return words[Math.floor(words.length * Math.random())];
+}
+
+function getRandomPhrase () {
+  return getRandomWord('salutation') + ', ' + getRandomSubject() + ' ' + getRandomWord('happening');
 }
 
 var growlFunctions = {
+  chat: function (notification, topic, message) {
+    topic.innerHTML = 'New message from ' + getRandomWord('handle');
+    notification.classList.add('chat');
+    message.innerHTML = getRandomPhrase();
+  },
   emailCount: function (notification, topic, message) {
     inboxCount++;
     notification.classList.add('mail');
@@ -165,8 +190,8 @@ var growlFunctions = {
   newFlamingEmail: function (notification, topic, message) {
     inboxCount++;
     notification.classList.add('mail');
-    topic.innerHTML = 'New mail from ' + getRandomBoss();
-    message.innerHTML = 'URGENT ' + (getRandomNoun() + "S") .toUpperCase() + ' NEEDED';
+    topic.innerHTML = 'New mail from ' + getRandomWord('boss');
+    message.innerHTML = 'URGENT ' + (getRandomWord('noun') + "S") .toUpperCase() + ' NEEDED';
   }
 };
 
