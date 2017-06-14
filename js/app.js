@@ -193,15 +193,16 @@ function createGrownNotification () {
   document.querySelector('.growl-container').appendChild(newNotification);
   setTimeout(function () {
     newNotification.classList.add('show');
+    playSound("knock");
   }, 100);
-  
+
 
   setTimeout(function () {
     newNotification.classList.remove('show');
     setTimeout(function () {
       newNotification.parentNode.removeChild(newNotification);
     }, 100);
-  }, 10000);  
+  }, 10000);
 }
 
 function growlActionLoop () {
