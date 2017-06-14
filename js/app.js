@@ -29,7 +29,7 @@ var maxPeople = 9;
 
 var maxDegrees = 40; // For tilting the screen
 var actionTicks = 0;
-var numberGifs = 23;
+var numberGifs = 24;
 var ticks = 0;
 var minDelay = 10;
 var maxDelay = 150;
@@ -269,7 +269,7 @@ function generateSentence(templates) {
     sentenceTemplateCopy = sentenceTemplateCopy.substr(0, regexSearch.index) + randomWord + sentenceTemplateCopy.substr(regexSearch.index + regexSearch[0].length)
   }
 
-  return sentenceTemplateCopy;  
+  return sentenceTemplateCopy;
 }
 
 function getRandomEmailSubjectPrefix () {
