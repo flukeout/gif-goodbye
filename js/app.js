@@ -8,10 +8,15 @@ $(document).ready(function(){
     moveBar();
   });
 
-  screenHeight = $(window).outerHeight();
-  screenWidth = $(window).outerWidth();
+  setTimeout(function(){
+  screenHeight = $("body").outerHeight();
+  },10);
+
+  screenWidth = $("body").outerWidth();
   centerX = screenWidth / 2;
   centerY = -screenHeight / 2;
+
+  console.log(screenHeight);
 
   loop();
 });

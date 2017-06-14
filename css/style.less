@@ -1,9 +1,17 @@
 html {
   font-family: "Arvo", "Helvetica Neue", "Arial", sans-serif;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
 }
 
 body {
-  height: 100vh;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -213,7 +221,6 @@ h2 {
         padding-bottom: 0;
       }
     }
-
 
     &:before {
       content: ' ';
