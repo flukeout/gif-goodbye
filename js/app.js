@@ -5,9 +5,7 @@ $(document).ready(function(){
   });
 
   $(".ui-bar .close").on("mouseover",function(){
-
     moveBar();
-
   });
 
   screenHeight = $(window).outerHeight();
@@ -78,9 +76,9 @@ function joinPerson(){
   playSound("join");
   peopleJoined++;
 
-  $("body").removeClass("joinPop");
-  $("body").width(  $("body").width());
-  $("body").addClass("joinPop");
+  $(".page-wrapper").removeClass("joinPop");
+  $(".page-wrapper").width(  $(".page-wrapper").width());
+  $(".page-wrapper").addClass("joinPop");
 
 
   var emptyPeople = $(".person").not("[joined=true]").length;

@@ -6,12 +6,21 @@ body {
   height: 100vh;
   width: 100%;
   margin: 0;
+  padding: 0;
+  background: linear-gradient(-24deg, rgb(248, 14, 255), rgb(35, 207, 171));
+
+
+
+}
+
+.page-wrapper {
+  perspective: 1200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(-24deg, rgb(248, 14, 255), rgb(35, 207, 171));
-
-  perspective: 1200px;
+  height: 100vh;
+  width: 100%;
+  position: relative;
 
   &.joinPop {
     animation: joinPop .25s ease-out;
@@ -31,10 +40,7 @@ body {
       transform: scale(1);
     }
   }
-
 }
-
-
 
 
 .content-wrapper {
@@ -157,5 +163,20 @@ h2 {
     bottom: -10px;
     width: 60px;
     cursor: pointer;
+  }
+}
+
+.bottom-link {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  color: white;
+  font-size: 15px;
+  text-decoration: none;
+  transition: opacity .2s ease-out;
+  opacity: .6;
+
+  &:hover {
+    opacity: 1;
   }
 }
