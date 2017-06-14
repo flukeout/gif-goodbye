@@ -4,10 +4,16 @@ $(document).ready(function(){
     mouseMove(e.pageX, e.pageY);
   });
 
+  $(".ui-bar .close").on("click",function(){
+
+    moveBar();
+
+  });
+
   screenHeight = $(window).outerHeight();
   screenWidth = $(window).outerWidth();
   centerX = screenWidth / 2;
-  centerY = screenHeight / 2;
+  centerY = -screenHeight / 2;
 
   loop();
 });
@@ -20,7 +26,7 @@ var maxPeople = 9;
 
 var maxDegrees = 40; // For tilting the screen
 var actionTicks = 0;
-var numberGifs = 12;
+var numberGifs = 14;
 var ticks = 0;
 var minDelay = 10;
 var maxDelay = 150;
@@ -59,7 +65,6 @@ function loop(){
 }
 
 function leavePerson(){
-  console.log("leavePerson");
   playSound("leave");
   randomSpot = randomSpot = Math.floor(getRandom(0, peopleJoined));
   var leavingPerson = $(".person[joined]").eq(randomSpot);
@@ -83,8 +88,6 @@ function joinPerson(){
   randomSpot = Math.floor(getRandom(0, emptyPeople));
 
   var randomGif = Math.floor(getRandom(1, numberGifs + 1));
-
-
 
   var newSpot = $(".person:not([joined])").eq(randomSpot);
   newSpot.attr("joined",true);
@@ -115,7 +118,19 @@ function mouseMove(x,y) {
   var shadowY = 20 + shadowMax/2 - percentY * shadowMax + "px";
 
   $(".vidyo-wrapper").css("box-shadow",  shadowX + " " + shadowY + " 10px rgba(0,0,0,.2)");
-
+  $(".ui-bar").css("box-shadow",  shadowX/3 + " " + shadowY/3 + " 5px rgba(0,0,0,.2)");
 }
 
+function moveBar(){
+  var minLeft = -50;
+  var maxLeft = $(".people").outerWidth() - $(".ui-bar").width() + 50;
 
+  var minTop = 0;
+  var maxTop = $(".people").outerHeight() + 50;
+
+  var newLeft = Math.round(getRandom(minLeft,maxLeft));
+  var newTop = Math.round(getRandom(minTop,maxTop));
+
+  $(".ui-bar").css("transform",  "translateX("+newLeft+"px) translateY("+newTop+"px) translateZ(25px)");
+
+}
