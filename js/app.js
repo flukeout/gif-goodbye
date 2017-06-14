@@ -146,12 +146,22 @@ var growlSentences = [
   '{{handle}} needs you to {{present_direct_verb}} the {{noun}}',
   'their {{noun}} needs a {{noun}}',
   '{{handle}} needs a {{noun}}',
-  '{{noun}} {{event}}'
+  '{{noun}} {{event}}',
+  '{{question}} does {{singular_pronoun}} {{present_direct_verb}} {{noun}}s?',
+  'what is {{singular_pronoun}} {{ing_verb}} with {{noun}}s?'
 ];
 
 var growlWords = {
   boss: [
     'mark@mozillafoundation.org', 'chris@mozillafoundation.org', 'angela@mozillafoundation.org'
+  ],
+  infinitive_verb: [
+    'to run', 'to make', 'to eat'
+  ],
+  ing_verb: [
+    'exploding', 'running', 'eating',
+    'leaving', 'buying', 'explaining',
+    'questioning',
   ],
   present_direct_verb: [
     'fix', 'eat', 'make',
@@ -176,6 +186,9 @@ var growlWords = {
   ],
   simple_response: [
     'ok', 'nah', 'yep', 'nope', 'maybe'
+  ],
+  question: [
+    'how', 'why', 'where', 'when'
   ],
   noun: [
     'server', 'comment', 'hire',
