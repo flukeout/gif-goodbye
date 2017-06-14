@@ -29,7 +29,7 @@ var maxPeople = 9;
 
 var maxDegrees = 40; // For tilting the screen
 var actionTicks = 0;
-var numberGifs = 26;
+var numberGifs = 27;
 var ticks = 0;
 var minDelay = 10;
 var maxDelay = 150;
