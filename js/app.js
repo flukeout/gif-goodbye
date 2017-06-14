@@ -139,15 +139,16 @@ function moveBar(){
 }
 
 var growlChatSentences = [
-  'the {{noun}} {{command_verb}} to be {{past_verb}}',
+  'the {{noun}}s {{command_verb}} to be {{past_verb}}',
   'the {{adjective}} {{noun}} {{command_verb}} to be {{past_verb}}',
   '{{singular_pronoun}} says {{simple_response}}',
-  '{{singular_pronoun}} says {{adjective}} {{simple_response}}',
+  '{{singular_pronoun}} says {{simple_response}}, {{adjective}}',
   '{{plural_pronoun}} say {{simple_response}}',
-  '{{plural_pronoun}} say {{adjective}} {{simple_response}}',
+  '{{plural_pronoun}} say {{simple_response}}, {{adjective}}',
   '{{singular_pronoun}} {{third_person_verb}} a {{noun}}',
   '{{singular_pronoun}} {{third_person_verb}} a {{adjective}} {{noun}}',
   '{{handle}} needs you to {{present_direct_verb}} the {{noun}}',
+  '{{handle}} needs you to {{present_direct_verb}} the {{noun}}s',
   '{{handle}} needs you to {{present_direct_verb}} the {{adjective}} {{noun}}',
   'their {{noun}} {{third_person_verb}} a {{noun}}',
   'their {{noun}} {{third_person_verb}} a {{adjective}} {{noun}}',
@@ -299,7 +300,7 @@ var growlFunctions = {
     var date = new Date(Date.now() + 600000);
     notification.classList.add('calendar');
     topic.innerHTML = generateSentence(growlCalendarPhrases);
-    message.innerHTML = date.getHours() + ':' + date.getMinutes();
+    message.innerHTML = date.getHours() + ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
   }
 };
 
