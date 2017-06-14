@@ -1,10 +1,10 @@
 var sounds = {
   "join" : {
-    url : "../sounds/join.wav",
+    url : "./sounds/join.wav",
     volume: .4
   },
   "leave" : {
-    url : "../sounds/leave.wav",
+    url : "./sounds/leave.wav",
   }
 };
 
