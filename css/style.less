@@ -1,0 +1,164 @@
+html {
+  font-family: "Arvo", "Helvetica Neue", "Arial", sans-serif;
+}
+
+body {
+
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(-24deg, rgb(248, 14, 255), rgb(35, 207, 171));
+
+  perspective: 1200px;
+
+  &.joinPop {
+    animation: joinPop .25s ease-out;
+  }
+
+  @keyframes joinPop {
+    0% {
+      transform: scale(1);
+    }
+    30% {
+      transform: scale(1.01);
+    }
+    90% {
+      transform: scale(.99);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+}
+
+
+
+
+.content-wrapper {
+  display: block;
+  transform-style: preserve-3d;
+}
+
+h1 {
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  transform: translateZ(40px);
+  z-index: 4;
+  text-shadow: 0px 2px 0px rgba(0,0,0,.2);
+}
+
+h2 {
+  color: white;
+  font-size: 36px;
+  text-align: center;
+  transform: translateZ(-40px);
+  z-index: 4;
+  text-shadow: 0px 2px 0px rgba(0,0,0,.2);
+}
+
+
+.vidyo-wrapper {
+  z-index: 1;
+  margin: 15px 0 30px 0;
+
+  .people {
+    background: black;
+    width: 600px;
+    height: 462px;
+
+    .person {
+      width: 200px;
+      height: 154px;
+      display: block;
+      float: left;
+      background-size: cover;
+      z-index: 100;
+      transition: transform .2s ease-out;
+
+      @keyframes join {
+        0% {
+          transform: scale(.8);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      &:hover {
+        transform: scale(1.3) translateZ(50px);
+        z-index: 999;
+      }
+    }
+  }
+
+  .footer, .header {
+    background: #DDD;
+  }
+
+  .footer {
+    height: 20px;
+    border-radius: 0 0 5px 5px;
+    border-top: solid 1px rgba(0,0,0,.2);
+  }
+
+  .header {
+    line-height: 0;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+        border-bottom: solid 1px rgba(0,0,0,.2);
+
+    .chrome {
+      display: inline-block;
+      height: 12px;
+      width: 12px;
+      border-radius: 20px;
+      margin-right: 2px;
+      border: solid 1px rgba(0,0,0,.2);
+    }
+
+    .red {
+      background: #ff6059;
+    }
+
+    .yellow {
+      background: #ffc02f;
+    }
+
+    .green {
+      background: #28ca42;
+    }
+  }
+
+}
+
+
+
+// Probably want to drop in some media query stuff too... narrow css?
+
+// Animation Example
+
+.animation-example {
+  animation: sampleAnimation .4s ease-out;
+  animation-iteration-count: 3;
+  animation-delay: .5s;
+}
+
+@keyframes sampleAnimation {
+  0% {
+    transform: scale(1.5);
+    opacity: .5;
+  }
+  50%{
+    transform: scale(.7);
+    opacity: .5;
+  }
+  100% {
+    transform: scale(.7);
+    opacity: 0;
+  }
+}
