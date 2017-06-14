@@ -180,3 +180,53 @@ h2 {
     opacity: 1;
   }
 }
+
+@growlWidth: 300px;
+
+.growl-container {
+  position: absolute;
+  right: 10px;
+  width: @growlWidth;
+  height: 100%;
+
+  .notification {
+    position: relative;
+    height: 50px;
+    background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
+    width: @growlWidth;
+    border: 2px solid darkblue;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px #000;
+    right: -@growlWidth;
+    transition: right .25s;
+    font-size: .8em;
+    padding: 5px;
+    padding-left: 50px;
+    box-sizing: border-box;
+
+    &:before {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-size: 40px auto;
+      background-position: 5px 50%;
+      width: 50px;
+      height: 100%;
+      background-repeat: no-repeat;
+    }
+
+    &.mail:before {
+      background-image: ~"url('images/growl/gmail.png')";
+    }
+
+    &.show {
+      right: 1px;
+    }
+
+    .topic {
+      font-weight: bold;
+    }
+  }  
+}
+

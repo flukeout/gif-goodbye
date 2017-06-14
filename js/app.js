@@ -132,3 +132,82 @@ function moveBar(){
   $(".ui-bar").css("transform",  "translateX("+newLeft+"px) translateY("+newTop+"px) translateZ(25px)");
 
 }
+
+var growlWords = {
+  bosses: [
+    'mark@mozillafoundation.org', 'chris@mozillafoundation.org', 'angela@mozillafoundation.org'
+  ],
+  nouns: [
+    'server', 'comment', 'hire'
+  ],
+  verbs: [
+    'burned down'
+  ]
+}
+
+var inboxCount = 2000 + Math.floor(Math.random() * 10000)
+
+function getRandomBoss () {
+  return growlWords.bosses[Math.floor(growlWords.bosses.length * Math.random())];
+}
+
+function getRandomNoun () {
+  return growlWords.nouns[Math.floor(growlWords.nouns.length * Math.random())];
+}
+
+var growlFunctions = {
+  emailCount: function (notification, topic, message) {
+    inboxCount++;
+    notification.classList.add('mail');
+    topic.hidden = true;
+    message.innerHTML = inboxCount + ' new messages';
+  },
+  newFlamingEmail: function (notification, topic, message) {
+    inboxCount++;
+    notification.classList.add('mail');
+    topic.innerHTML = 'New mail from ' + getRandomBoss();
+    message.innerHTML = 'URGENT ' + (getRandomNoun() + "S") .toUpperCase() + ' NEEDED';
+  }
+};
+
+function insertGrowlContent (notification, topic, message) {
+  var keys = Object.keys(growlFunctions);
+  return growlFunctions[keys[Math.floor(Math.random() * keys.length)]](notification, topic, message);
+}
+
+function createGrownNotification () {
+  var newNotification = document.createElement('div');
+  newNotification.classList.add('notification');
+
+  var topic = document.createElement('div');
+  var message = document.createElement('div');
+
+  topic.classList.add('topic');
+  topic.classList.add('message');
+
+  newNotification.appendChild(topic);
+  newNotification.appendChild(message);
+
+  insertGrowlContent(newNotification, topic, message);
+
+  document.querySelector('.growl-container').appendChild(newNotification);
+  setTimeout(function () {
+    newNotification.classList.add('show');
+  }, 100);
+  
+
+  setTimeout(function () {
+    newNotification.classList.remove('show');
+    setTimeout(function () {
+      newNotification.parentNode.removeChild(newNotification);
+    }, 100);
+  }, 10000);  
+}
+
+function growlActionLoop () {
+  if (Math.random() > .9) {
+    createGrownNotification();
+  }
+}
+
+setInterval(growlActionLoop, 300);
