@@ -67,13 +67,21 @@ function loop(){
   window.requestAnimationFrame(loop);
 }
 
+var usedGifs = [];
+
 function leavePerson(){
   playSound("leave");
   randomSpot = randomSpot = Math.floor(getRandom(0, peopleJoined));
+
   var leavingPerson = $(".person[joined]").eq(randomSpot);
   leavingPerson.removeAttr("joined");
   leavingPerson.css("background-image", "none");
   peopleJoined--;
+
+  var gifIndex = +leavingPerson.attr('data-gif-index');
+  usedGifs = usedGifs.filter(function (value) {
+    return gifIndex !== value;
+  });
 }
 
 function joinPerson(){
@@ -90,11 +98,19 @@ function joinPerson(){
 
   randomSpot = Math.floor(getRandom(0, emptyPeople));
 
-  var randomGif = Math.floor(getRandom(1, numberGifs + 1));
+  var randomGif;
+
+  while (true) {
+    randomGif = Math.floor(getRandom(1, numberGifs + 1));
+    if (usedGifs.indexOf(randomGif) === -1) break; 
+  }
+
+  usedGifs.push(randomGif);
 
   var newSpot = $(".person:not([joined])").eq(randomSpot);
   newSpot.attr("joined",true);
   newSpot.css("background-image", "url(images/"+randomGif+".gif)");
+  newSpot.attr('data-gif-index', randomGif);
 }
 
 function mouseMove(x,y) {
