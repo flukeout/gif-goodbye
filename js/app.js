@@ -9,14 +9,12 @@ $(document).ready(function(){
   });
 
   setTimeout(function(){
-  screenHeight = $("body").outerHeight();
+    screenHeight = $("body").outerHeight();
   },10);
 
   screenWidth = $("body").outerWidth();
   centerX = screenWidth / 2;
   centerY = -screenHeight / 2;
-
-  console.log(screenHeight);
 
   loop();
 });
@@ -27,9 +25,9 @@ var screenWidth, screenHeight, centerX, centerY;
 var peopleJoined = 0;
 var maxPeople = 9;
 
-var maxDegrees = 40; // For tilting the screen
+var maxDegrees = 40;
 var actionTicks = 0;
-var numberGifs = 28;
+var numberGifs = 29;
 var ticks = 0;
 var minDelay = 10;
 var maxDelay = 150;
@@ -90,9 +88,9 @@ function joinPerson(){
   peopleJoined++;
 
   $(".page-wrapper").removeClass("joinPop");
-  $(".page-wrapper").width(  $(".page-wrapper").width());
+  $(".page-wrapper").width($(".page-wrapper").width());
   $(".page-wrapper").addClass("joinPop");
-
+  $(".page-wrapper").removeAttr("style");
 
   var emptyPeople = $(".person").not("[joined=true]").length;
 
@@ -126,9 +124,7 @@ function mouseMove(x,y) {
 
   var angleDeg = Math.atan2(screenHeight - y, screenWidth - x) * 180 / Math.PI;
 
-
   $("body").css("background","linear-gradient("+angleDeg+"deg, rgb(248, 14, 255), rgb(35, 207, 171))");
-
 
   $(".content-wrapper").css("transform", transformString);
 
@@ -141,14 +137,23 @@ function mouseMove(x,y) {
 }
 
 function moveBar(){
+  playSound("move");
+
   var minLeft = -50;
   var maxLeft = $(".people").outerWidth() - $(".ui-bar").width() + 50;
-
   var minTop = 0;
   var maxTop = $(".people").outerHeight() + 50;
+  var currentLeft = $(".ui-bar").position().left;
+  var currentTop = $(".ui-bar").position().top;
 
-  var newLeft = Math.round(getRandom(minLeft,maxLeft));
-  var newTop = Math.round(getRandom(minTop,maxTop));
+
+  var totalMove = 0;
+
+  while(totalMove < 200) {
+    var newLeft = Math.round(getRandom(minLeft,maxLeft));
+    var newTop = Math.round(getRandom(minTop,maxTop));
+    totalMove = Math.abs(currentLeft - newLeft) + Math.abs(currentTop - newTop);
+  }
 
   $(".ui-bar").css("transform",  "translateX("+newLeft+"px) translateY("+newTop+"px) translateZ(25px)");
 
@@ -348,11 +353,11 @@ function createGrownNotification () {
 
 
   setTimeout(function () {
-    newNotification.classList.remove('show');
+    newNotification.classList.add('go-away');
     setTimeout(function () {
       newNotification.parentNode.removeChild(newNotification);
-    }, 100);
-  }, 10000);
+    }, 250); //100
+  }, 10000); //10000
 }
 
 function growlActionLoop () {
