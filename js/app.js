@@ -356,7 +356,7 @@ function createGrownNotification () {
     newNotification.classList.add('go-away');
     setTimeout(function () {
       newNotification.parentNode.removeChild(newNotification);
-    }, 250); //100
+    }, 275); //100
   }, 10000); //10000
 }
 
