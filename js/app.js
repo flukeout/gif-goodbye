@@ -27,7 +27,7 @@ var maxPeople = 9;
 
 var maxDegrees = 40;
 var actionTicks = 0;
-var numberGifs = 29;
+var numberGifs = 30;
 var ticks = 0;
 var minDelay = 10;
 var maxDelay = 150;
