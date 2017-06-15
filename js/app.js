@@ -16,7 +16,10 @@ $(document).ready(function(){
   centerX = screenWidth / 2;
   centerY = -screenHeight / 2;
 
-  loop();
+  setTimeout(function(){
+    loop();
+  }, 1000);
+
 });
 
 
