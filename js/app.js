@@ -192,7 +192,7 @@ var growlCalendarPhrases = [
 
 var growlWords = {
   boss: [
-    'mark@mozillafoundation.org', 'chris@mozillafoundation.org', 'angela@mozillafoundation.org'
+    'mark@mozillafoundation.org', 'ashley@mozillafoundation.org', 'angela@mozillafoundation.org'
   ],
   infinitive_verb: [
     'to run', 'to make', 'to eat'
@@ -225,8 +225,8 @@ var growlWords = {
     'obvious', 'codified', 'performative', 'efficient'
   ],
   salutation: [
-    'dude', 'hey', 'uhoh',
-    'omg', 'yo', 'SIMON'
+    'hello', 'hey', 'uhoh',
+    'omg', 'yo', 'ANIL'
   ],
   singular_pronoun: [
     'she', 'he', 'it'
@@ -235,7 +235,7 @@ var growlWords = {
     'they', 'I', 'we'
   ],
   simple_response: [
-    'ok', 'nah', 'yep', 'nope', 'maybe'
+    'ok', 'nah', 'yep', 'nope', 'maybe', 'sure'
   ],
   question: [
     'how', 'why', 'where', 'when'
@@ -244,16 +244,16 @@ var growlWords = {
     'server', 'comment', 'hire',
     'manager', 'model', 'quote',
     'doc', 'presentation', 'deck',
-    'signin', 'SSO', 'Thimble',
-    'Mozfest', 'maker', 'FTU'
+    'signin', 'SSO', 'Foundation site',
+    'MozFest', 'maker'
   ],
   handle: [
-    'flukeout', 'cade', 'hannah',
-    'mw', 'secretrobotroll', 'pomax',
-    'gvn', 'brett', 'kristina', 'amira', 'julia'
+    'tibor', 'claudia', 'nancy',
+    'rebecca', 'mavis', 'tyler',
+    'daniel', 'kristina', 'sabrina', 'simon'
   ],
   event: [
-    'burned down', 'isn\'t responding', 'likes cake',
+    'burned down', 'isn\'t responding', 'needs approval',
     'wants a raise', 'needs help', 'has too many'
   ],
   urgent_verb: [
@@ -268,10 +268,10 @@ var growlWords = {
     'get', 'eat', 'make', 'pick up', 'buy'
   ],
   personal_place: [
-    'store', 'joe\'s', 'mountain', 'vancouver'
+    'store', 'lake', 'river', 'vancouver'
   ],
   personal_noun: [
-    'skis', 'kk', 'tires', 'tools', 'coffee', 'joe', 'ice cream'
+    'kayak', 'tires', 'tools', 'coffee', 'lake', 'ice cream', 'donuts'
   ]
 }
 

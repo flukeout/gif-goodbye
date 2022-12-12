@@ -15,7 +15,7 @@ var sentences = [
 
 var growlWords = {
   boss: [
-    'mark@mozillafoundation.org', 'chris@mozillafoundation.org', 'angela@mozillafoundation.org'
+    'mark@mozillafoundation.org', 'ashley@mozillafoundation.org', 'angela@mozillafoundation.org'
   ],
   present_direct_verb: [
     'fix', 'eat', 'make',
@@ -29,8 +29,8 @@ var growlWords = {
     'designed', 'torn down'
   ],
   salutation: [
-    'dude', 'hey', 'uhoh',
-    'omg', 'yo', 'SIMON'
+    'hello', 'hey', 'uhoh',
+    'omg', 'yo', 'ANIL'
   ],
   singular_pronoun: [
     'she', 'he', 'it'
@@ -39,21 +39,22 @@ var growlWords = {
     'they', 'I', 'we'
   ],
   simple_response: [
-    'ok', 'nah', 'yep', 'nope', 'maybe'
+    'ok', 'nah', 'yep', 'nope', 'maybe', 'sure'
   ],
   noun: [
     'server', 'comment', 'hire',
     'manager', 'model', 'quote',
     'doc', 'presentation', 'deck',
-    'signin', 'SSO', 'Thimble',
-    'Mozfest', 'maker'
+    'signin', 'SSO', 'Foudation site',
+    'MozFest', 'maker'
   ],
   handle: [
-    'flukeout', 'cade', 'hannah',
-    'mw', 'secretrobotroll'
+    'tibor', 'claudia', 'nancy',
+    'rebecca', 'mavis', 'tyler',
+    'daniel', 'kristina', 'sabrina', 'simon'
   ],
   event: [
-    'burned down', 'isn\'t responding', 'likes cake',
+    'burned down', 'isn\'t responding', 'needs approval',
     'wants a raise', 'needs help', 'has too many'
   ]
 }
@@ -81,7 +82,7 @@ function generateSentence() {
     sentenceTemplateCopy = sentenceTemplateCopy.substr(0, regexSearch.index) + randomWord + sentenceTemplateCopy.substr(regexSearch.index + regexSearch[0].length)
   }
 
-  return sentenceTemplateCopy;  
+  return sentenceTemplateCopy;
 }
 
 document.addEventListener('DOMContentLoaded', function ()  {
